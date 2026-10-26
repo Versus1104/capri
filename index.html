@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090812">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CAPRI">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <title>CAPRI AI</title>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <main class="app">
+    <header class="top">
+      <div class="brand"><span class="orb">C</span><div><h1>CAPRI<span>_AI</span></h1><small>ЛИЧНЫЙ ИИ · ПРОТОТИП 0.1</small></div></div>
+      <button id="settingsBtn" class="icon-btn" aria-label="Настройки">⚙</button>
+    </header>
+
+    <section class="hero">
+      <div class="ring ring1"></div><div class="ring ring2"></div>
+      <div class="avatar"><div class="eyes"><i></i><i></i></div><div class="mouth"></div></div>
+      <div class="status"><span class="dot"></span><span id="statusText">НА СВЯЗИ</span></div>
+      <p id="moodLine">«Ну? Я слушаю. Удиви меня.»</p>
+    </section>
+
+    <section class="chat" id="chat" aria-live="polite">
+      <div class="message capri"><span class="speaker">CAPRI</span><p>Привет. Я CAPRI. Пока я ещё прототип, но давай знакомиться. Как прошёл твой день?</p></div>
+    </section>
+
+    <div class="quick">
+      <button data-prompt="Расскажи что-нибудь неожиданное.">✦ Удиви меня</button>
+      <button data-prompt="Запомни: ">＋ Запомнить</button>
+      <button id="spontaneousBtn">⟲ Скажи что-нибудь</button>
+    </div>
+
+    <form id="composer" class="composer">
+      <button type="button" id="micBtn" class="mic" title="Голосовой ввод">🎙</button>
+      <input id="userInput" autocomplete="off" placeholder="Напиши или нажми на микрофон…" aria-label="Сообщение">
+      <button type="submit" class="send" aria-label="Отправить">➤</button>
+    </form>
+    <div class="foot"><span id="voiceState">ГОЛОС: ГОТОВ</span><span id="memoryCount">ПАМЯТЬ: 0</span></div>
+  </main>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="dialog-head"><h2>Настройки CAPRI</h2><button class="icon-btn">✕</button></form>
+    <label>OpenRouter API key <input id="apiKey" type="password" placeholder="sk-or-v1-…" autocomplete="off"></label>
+    <p class="hint">Ключ хранится только в этом браузере на этом устройстве. Не публикуй этот прототип с личным ключом: клиентский ключ можно извлечь.</p>
+    <label>Модель <input id="model" value="openrouter/free" placeholder="openrouter/free"></label>
+    <label class="toggle"><input id="speakToggle" type="checkbox" checked> Озвучивать ответы</label>
+    <label class="toggle"><input id="spontaneousToggle" type="checkbox" checked> Разрешить спонтанные реплики по нажатию</label>
+    <button id="saveSettings" type="button" class="primary">Сохранить</button>
+    <button id="clearMemory" type="button" class="danger">Очистить локальную память</button>
+    <p class="hint">Голосовой ввод зависит от поддержки Safari/iOS. Если микрофон не сработает, можно печатать сообщения. Постоянное прослушивание в фоне не поддерживается этой веб-версией.</p>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
