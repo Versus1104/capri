@@ -3,59 +3,99 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#090812">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="CAPRI">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="style.css">
-  <title>CAPRI AI</title>
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="CAPRI — твой личный AI-компаньон">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <title>CAPRI — Core v1</title>
 </head>
 <body>
-  <div class="scanlines"></div>
-  <main class="app">
-    <header class="top">
-      <div class="brand"><span class="orb">C</span><div><h1>CAPRI<span>_AI</span></h1><small>ЛИЧНЫЙ ИИ · ПРОТОТИП 0.1</small></div></div>
-      <button id="settingsBtn" class="icon-btn" aria-label="Настройки">⚙</button>
-    </header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">C</div>
+        <div><div class="brand-name">CAPRI</div><div class="brand-sub">PERSONAL AI COMPANION</div></div>
+      </div>
+      <div class="profile-card">
+        <div class="avatar"><span>Ｃ</span><i></i></div>
+        <div class="profile-name">CAPRI</div>
+        <div class="profile-status"><span class="status-dot"></span><span id="statusText">НА СВЯЗИ</span></div>
+        <p class="profile-description">Немного сарказма. Немного хаоса. И я.</p>
+      </div>
+      <div class="side-label">ПАМЯТЬ</div>
+      <div class="memory-card">
+        <div class="memory-icon">✦</div>
+        <div><strong id="memoryCount">ПАМЯТЬ: 0</strong><small>Локальные воспоминания</small></div>
+      </div>
+      <button id="showMemoryBtn" class="side-button">✧ Открыть память</button>
+      <button id="newChatBtn" class="side-button">＋ Новый разговор</button>
+      <div class="sidebar-bottom">
+        <div class="privacy-note"><span>●</span> История хранится на этом устройстве</div>
+        <button id="settingsBtn" class="settings-button"><span>⚙</span> Настройки <span class="settings-arrow">↗</span></button>
+      </div>
+    </aside>
 
-    <section class="hero">
-      <div class="ring ring1"></div><div class="ring ring2"></div>
-      <div class="avatar"><div class="eyes"><i></i><i></i></div><div class="mouth"></div></div>
-      <div class="status"><span class="dot"></span><span id="statusText">НА СВЯЗИ</span></div>
-      <p id="moodLine">«Ну? Я слушаю. Удиви меня.»</p>
-    </section>
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="mobile-logo">C</span> CAPRI <span class="core-label">CORE v1</span></div>
+        <div class="topbar-left"><span class="live-indicator"></span><span>ЛИЧНЫЙ КАНАЛ</span><span class="top-separator">/</span><span class="core-label">CORE v1</span></div>
+        <div class="topbar-right"><span class="privacy-pill">● PRIVATE SESSION</span><button id="topSettingsBtn" class="icon-button" aria-label="Настройки">⚙</button></div>
+      </header>
 
-    <section class="chat" id="chat" aria-live="polite">
-      <div class="message capri"><span class="speaker">CAPRI</span><p>Привет. Я CAPRI. Пока я ещё прототип, но давай знакомиться. Как прошёл твой день?</p></div>
-    </section>
+      <section id="chat" class="chat-area" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <div class="welcome-orb"><div class="orb-core">C</div><span class="orb-ring ring-one"></span><span class="orb-ring ring-two"></span><span class="orb-dot"></span></div>
+          <div class="eyebrow">СИСТЕМА АКТИВНА <span></span></div>
+          <h1>Ну привет.<br><em>Я CAPRI.</em></h1>
+          <p class="welcome-copy">Твой личный ИИ-компаньон. Могу поговорить, подколоть, выслушать или помочь разобраться с очередным жизненным пиздецом.</p>
+          <div class="prompt-grid">
+            <button class="prompt-card" data-prompt="Расскажи что-нибудь интересное, чего я не ожидал."><span>↗</span><strong>Удиви меня</strong><small>Что-нибудь неожиданное</small></button>
+            <button class="prompt-card" data-prompt="Давай просто поболтаем. Начни сама с интересной темы."><span>✧</span><strong>Просто поговорим</strong><small>Без формальностей</small></button>
+            <button class="prompt-card" data-prompt="Помоги мне разобраться в том, что у меня сейчас на уме."><span>⌁</span><strong>Есть мысли</strong><small>Давай разберёмся</small></button>
+            <button class="prompt-card" data-prompt="Подшути надо мной по-доброму, но не сдерживай сарказм."><span>☻</span><strong>Включи сарказм</strong><small>Я это переживу</small></button>
+          </div>
+        </div>
+      </section>
 
-    <div class="quick">
-      <button data-prompt="Расскажи что-нибудь неожиданное.">✦ Удиви меня</button>
-      <button data-prompt="Запомни: ">＋ Запомнить</button>
-      <button id="spontaneousBtn">⟲ Скажи что-нибудь</button>
+      <div class="composer-wrap">
+        <div class="composer-tools"><span id="voiceState">ГОЛОС: ГОТОВ</span><span class="tool-hint">ENTER — отправить · SHIFT+ENTER — новая строка</span></div>
+        <form id="composer" class="composer">
+          <button type="button" id="micBtn" class="composer-icon" title="Голосовой ввод" aria-label="Голосовой ввод">🎙</button>
+          <textarea id="userInput" rows="1" placeholder="Напиши что-нибудь, я здесь..." autocomplete="off"></textarea>
+          <button type="submit" id="sendBtn" class="send-button" aria-label="Отправить">↗</button>
+        </form>
+        <div class="composer-footer"><span><i></i> CAPRI CORE ONLINE</span><span>Она может ошибаться. У неё хотя бы есть характер.</span></div>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form method="dialog" class="dialog-head"><div><div class="dialog-kicker">CAPRI / SYSTEM</div><h2>Настройки</h2></div><button class="close-button" aria-label="Закрыть">×</button></form>
+    <div class="dialog-content">
+      <label for="apiKey">OpenRouter API key</label>
+      <input id="apiKey" type="password" placeholder="sk-or-v1-..." autocomplete="off">
+      <p class="field-help">Ключ хранится в локальном хранилище этого браузера. Не публикуй его и не отправляй другим людям.</p>
+      <label for="model">Модель</label>
+      <input id="model" type="text" placeholder="openrouter/free" value="openrouter/free">
+      <p class="field-help">Можно указать доступный тебе идентификатор модели OpenRouter.</p>
+      <div class="toggle-row"><div><strong>Голос CAPRI</strong><small>Зачитывать ответы вслух</small></div><label class="switch"><input id="speakToggle" type="checkbox" checked><span></span></label></div>
+      <div class="toggle-row"><div><strong>Спонтанные реплики</strong><small>Разрешить кнопку случайной темы</small></div><label class="switch"><input id="spontaneousToggle" type="checkbox" checked><span></span></label></div>
+      <div class="settings-actions"><button type="button" id="clearHistory" class="secondary-button">Очистить историю</button><button type="button" id="clearMemory" class="secondary-button danger">Очистить память</button></div>
+      <button type="button" id="saveSettings" class="primary-button">Сохранить настройки</button>
+      <p class="field-help bottom-help">Для личного тестирования подходит. Для публичного приложения API-ключ нужно перенести на защищённый сервер.</p>
     </div>
-
-    <form id="composer" class="composer">
-      <button type="button" id="micBtn" class="mic" title="Голосовой ввод">🎙</button>
-      <input id="userInput" autocomplete="off" placeholder="Напиши или нажми на микрофон…" aria-label="Сообщение">
-      <button type="submit" class="send" aria-label="Отправить">➤</button>
-    </form>
-    <div class="foot"><span id="voiceState">ГОЛОС: ГОТОВ</span><span id="memoryCount">ПАМЯТЬ: 0</span></div>
-  </main>
-
-  <dialog id="settingsDialog">
-    <form method="dialog" class="dialog-head"><h2>Настройки CAPRI</h2><button class="icon-btn">✕</button></form>
-    <label>OpenRouter API key <input id="apiKey" type="password" placeholder="sk-or-v1-…" autocomplete="off"></label>
-    <p class="hint">Ключ хранится только в этом браузере на этом устройстве. Не публикуй этот прототип с личным ключом: клиентский ключ можно извлечь.</p>
-    <label>Модель <input id="model" value="openrouter/free" placeholder="openrouter/free"></label>
-    <label class="toggle"><input id="speakToggle" type="checkbox" checked> Озвучивать ответы</label>
-    <label class="toggle"><input id="spontaneousToggle" type="checkbox" checked> Разрешить спонтанные реплики по нажатию</label>
-    <button id="saveSettings" type="button" class="primary">Сохранить</button>
-    <button id="clearMemory" type="button" class="danger">Очистить локальную память</button>
-    <p class="hint">Голосовой ввод зависит от поддержки Safari/iOS. Если микрофон не сработает, можно печатать сообщения. Постоянное прослушивание в фоне не поддерживается этой веб-версией.</p>
   </dialog>
-  <script src="app.js"></script>
+
+  <dialog id="memoryDialog" class="settings-dialog">
+    <form method="dialog" class="dialog-head"><div><div class="dialog-kicker">CAPRI / MEMORY</div><h2>Моя память</h2></div><button class="close-button" aria-label="Закрыть">×</button></form>
+    <div class="dialog-content">
+      <p class="field-help">Напиши CAPRI «Запомни: ...», чтобы добавить воспоминание. Сохранённые записи находятся только на этом устройстве.</p>
+      <div id="memoryList" class="memory-list"></div>
+      <div class="memory-add"><input id="memoryInput" type="text" placeholder="Добавить воспоминание..."><button id="addMemoryBtn" class="primary-button">Добавить</button></div>
+    </div>
+  </dialog>
+
+  <script src="./app.js"></script>
 </body>
 </html>

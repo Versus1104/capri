@@ -1,10 +1,19 @@
 {
-  "name": "CAPRI AI",
+  "name": "CAPRI — Personal AI Companion",
   "short_name": "CAPRI",
-  "description": "Личный киберпанк ИИ-компаньон",
-  "start_url": "./index.html",
+  "description": "Личный AI-компаньон CAPRI",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#090812",
-  "theme_color": "#090812",
-  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "background_color": "#09090d",
+  "theme_color": "#09090d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
